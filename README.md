@@ -20,9 +20,21 @@ n8n-MCP serves as a bridge between n8n's workflow automation platform and AI mod
 - 🤖 **AI tools** - 263 AI-capable nodes detected with full documentation
 
 
+## ⚠️ Important Safety Warning
+
+**NEVER edit your production workflows directly with AI!** Always:
+- 🔄 **Make a copy** of your workflow before using AI tools
+- 🧪 **Test in development** environment first
+- 💾 **Export backups** of important workflows
+- ⚡ **Validate changes** before deploying to production
+
+AI results can be unpredictable. Protect your work!
+
 ## 🚀 Quick Start
 
 Get n8n-MCP running in 5 minutes:
+
+[![n8n-mcp Video Quickstart Guide](./thumbnail.png)](https://youtu.be/5CccjiLLyaY?si=Z62SBGlw9G34IQnQ&t=343)
 
 ### Option 1: npx (Fastest - No Installation!) 🚀
 
@@ -565,6 +577,27 @@ Current database coverage (n8n v1.100.1):
 
 ## 🔄 Recent Updates
 
+### v2.7.10 - Enhanced Authentication Logging
+- ✅ **ENHANCED**: Authentication logging for better debugging of client authentication issues
+- ✅ **ADDED**: Specific error reasons: `no_auth_header`, `invalid_auth_format`, `invalid_token`
+- ✅ **FIXED**: Issue #22 - Improved authentication failure diagnostics
+- ✅ **FIXED**: Issue #16 - AUTH_TOKEN_FILE validation for Docker production stacks
+- ✅ **SECURITY**: Removed token length from logs, trimmed tokens for whitespace edge cases
+
+### v2.7.8 - npx Support & npm Publishing
+- ✅ **NEW**: npx support - Run `npx n8n-mcp` without installation!
+- ✅ **OPTIMIZED**: npm package with runtime-only dependencies (8 deps vs 50+ dev deps)
+- ✅ **REDUCED**: Package size from 1GB+ to ~50MB by excluding dev dependencies
+- ✅ **FIXED**: Issue #15 - Added npx execution support as requested
+- ✅ **ENHANCED**: Database path resolution for npx, global, and local installations
+
+### v2.7.5 - AUTH_TOKEN_FILE Support
+- ✅ **NEW**: AUTH_TOKEN_FILE support for Docker secrets compatibility
+- ✅ **ADDED**: Known Issues section documenting Claude Desktop container duplication
+- ✅ **ENHANCED**: Authentication flexibility with both AUTH_TOKEN and AUTH_TOKEN_FILE
+- ✅ **FIXED**: Issue #16 - AUTH_TOKEN_FILE now properly implemented as documented
+- ✅ **BACKWARD COMPATIBLE**: AUTH_TOKEN continues to work as before
+
 ### v2.7.4 - Self-Documenting MCP Tools
 - ✅ **RENAMED**: `start_here_workflow_guide` → `tools_documentation` for clarity
 - ✅ **NEW**: Depth parameter - Control documentation detail with "essentials" or "full"
@@ -583,23 +616,6 @@ Current database coverage (n8n v1.100.1):
 - ✅ **5 OPERATION LIMIT**: Ensures reliability and atomic updates
 - ✅ **VALIDATION MODE**: Test changes with `validateOnly: true` before applying
 - ✅ **IMPROVED DOCS**: Comprehensive parameter documentation and examples
-
-### v2.6.3 - n8n Instance Workflow Validation
-- ✅ **NEW**: `n8n_validate_workflow` tool - Validate workflows directly from n8n instance by ID
-- ✅ **FETCHES**: Retrieves workflow from n8n API and runs comprehensive validation
-- ✅ **CONSISTENT**: Uses same WorkflowValidator for reliability
-- ✅ **FLEXIBLE**: Supports all validation profiles and options
-- ✅ **INTEGRATED**: Part of complete workflow lifecycle management
-- ✅ **SIMPLE**: AI agents need only workflow ID, no JSON required
-
-### v2.6.2 - Enhanced Workflow Creation Validation
-- ✅ **NEW**: Node type validation - Verifies node types actually exist in n8n
-- ✅ **FIXED**: Critical issue with `nodes-base.webhook` validation - now caught before database lookup
-- ✅ **NEW**: Smart suggestions for common mistakes (e.g., `webhook` → `n8n-nodes-base.webhook`)
-- ✅ **NEW**: Minimum viable workflow validation - Prevents single-node workflows (except webhooks)
-- ✅ **NEW**: Empty connection detection - Catches multi-node workflows with no connections
-- ✅ **ENHANCED**: Error messages with clear guidance and examples
-- ✅ **PREVENTS**: Broken workflows that show as question marks in n8n UI
 
 
 See [CHANGELOG.md](./docs/CHANGELOG.md) for full version history.
